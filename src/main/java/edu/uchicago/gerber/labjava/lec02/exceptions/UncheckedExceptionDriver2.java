@@ -1,4 +1,4 @@
-package edu.uchicago.gerber.labjava.lec05.exceptions;
+package edu.uchicago.gerber.labjava.lec02.exceptions;
 
 public class UncheckedExceptionDriver2 {
 

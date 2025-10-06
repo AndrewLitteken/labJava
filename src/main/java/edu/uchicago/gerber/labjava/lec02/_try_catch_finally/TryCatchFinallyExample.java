@@ -1,4 +1,4 @@
-package edu.uchicago.gerber.labjava.lec05._try_catch_finally;
+package edu.uchicago.gerber.labjava.lec02._try_catch_finally;
 
 public class TryCatchFinallyExample {
     public static void main(String[] args) {

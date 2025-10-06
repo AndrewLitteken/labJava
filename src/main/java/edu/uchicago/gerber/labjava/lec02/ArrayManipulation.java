@@ -5,10 +5,7 @@ import java.util.Random;
 
 public class ArrayManipulation {
 
-
 	public static void main(String[] args) {
-	
-		
 		//this is an array of bytes
 		byte[] yAges = new byte[5];
 		//the indices are from 0 to 4
