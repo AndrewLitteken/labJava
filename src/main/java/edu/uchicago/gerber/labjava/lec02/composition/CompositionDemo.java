@@ -13,6 +13,7 @@ public class CompositionDemo {
         Address address = new Address("123 Main St", "Springfield", "12345");
         User user = new User("Adam", 52, address, friends);
 
+        //System.out.println(address.street);
         System.out.println(user);
     }
 }
