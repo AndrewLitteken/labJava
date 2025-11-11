@@ -8,21 +8,35 @@ public class ExpressionRecursion {
     public static int parseFactor() {
         if (current.charAt(0) =='(') {
             int closeParen = 1;
-            while (current.charAt(closeParen) != ')') {
+            int stack = 0;
+            // While looking for the last close parenthesis, for every open paren we see,
+            // increase the count, and check that we see the same number of closing parentheses.
+            while (closeParen < current.length() && (current.charAt(closeParen) != ')' || stack != 0)) {
+                if  (current.charAt(closeParen) == '(') {
+                    stack++;
+                }
+                if  (current.charAt(closeParen) == ')') {
+                    stack--;
+                }
                 closeParen++;
             }
 
+            // Get the substring of the values inside the parentheses to recurse on
             String s = current.substring(1, closeParen);
+            // Save the current string so we can start from the end of the parentheses in the next
+            // iteration.
             String old = current;
             current = s;
             int val = parseExpression();
-            current = old.substring(s.length());
+            // Make sure we start after the close parentheses of this factor
+            current = old.substring(s.length()+2);
             return val;
         }
 
         String num = "";
         int index = 0;
-        while (current.charAt(index) != '+' && current.charAt(index) != '-' &&
+        // While we are finding parts of the number and not an operator.
+        while (index < current.length() && current.charAt(index) != '+' && current.charAt(index) != '-' &&
                 current.charAt(index) != '*' && current.charAt(index) != '/') {
             index++;
         }
@@ -70,10 +84,10 @@ public class ExpressionRecursion {
             char c = current.charAt(idx++);
             if (c == '+') {
                 current = current.substring(idx);
-                val += parseFactor();
+                val += parseTerm();
             } else if (c == '-') {
                 current = current.substring(idx);
-                val -= parseFactor();
+                val -= parseTerm();
             } else {
                 done = true;
             }
